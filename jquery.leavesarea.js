@@ -1,11 +1,14 @@
 /*
  * leavesArea for jQuery
  *
- * Copyright (c) Michael Smith
+ * Copyright (c) Michael Smith <michaelsmith.a@gmail.com>
  * Licensed under the MIT license.
  *
  * Date: June 8, 2011
  * Version: 1.0.0
+ *
+ *  use: $('covered_element').leavesArea(function() {alert('You left!');});
+ *
  */
 
 (function($) {

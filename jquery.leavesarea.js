@@ -11,21 +11,21 @@
 (function($) {
   $.fn.leavesArea = function(callback) {
     var self = $(this);
-    var conditional = false;
+    var entered_elem = false;
     $(document).bind('mousemove', function(e) {
-      var x = e.pageX;
-      var y = e.pageY;
-      if (!conditional && x > self.offset().left && x < self.offset().left + self.width() && y > self.offset().top && y < self.offset().top + self.height()) {
-        conditional = true;
+      var x = e.pageX,
+        y = e.pageY,
+        top = self.offset().top,
+        left = self.offset().left,
+        right = self.offset().left + self.width(),
+        bottom = self.offset().top + self.height();
+      if (!entered_elem && x > left && x < right && y > top && y < bottom) {
+        entered_elem = true;
       }
       else {
-        var up_mouse = self.offset().top > e.pageY,
-        left_mouse = self.offset().left > e.pageX,
-        right_mouse = self.offset().left + self.width() < e.pageX,
-        down_mouse = self.offset().top + self.height() < e.pageY;
-        if ((up_mouse || left_mouse || right_mouse || down_mouse) && conditional) {
-          conditional = false;
-          self.trigger('left-area');
+        if ((y < top || x < left || right < x|| bottom < y) && entered_elem) {
+          entered_elem = false;
+          self.trigger('leavesArea');
           if (callback)
             callback();
         }

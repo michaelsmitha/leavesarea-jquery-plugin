@@ -8,12 +8,11 @@
  * Version: 1.0.0
  *
  *  use: $('covered_element').leavesArea(function(){alert('!');});
- *  or : $('covered_element').leavesArea(); 
- *       $('covered_element').bind('leavesArea',function(){alert('!');});
+ *
  */
 
 (function($) {
-  $.fn.leavesArea = function(callback) {
+  $.fn.leavesArea = function(leave_callback, enter_callback) {
     var self = $(this);
     var entered_elem = false;
     $(document).bind('mousemove', function(e) {
@@ -25,13 +24,14 @@
         bottom = self.offset().top + self.height();
       if (!entered_elem && x > left && x < right && y > top && y < bottom) {
         entered_elem = true;
+        if (enter_callback)
+          enter_callback();
       }
       else {
         if ((y < top || x < left || right < x|| bottom < y) && entered_elem) {
           entered_elem = false;
-          self.trigger('leavesArea');
-          if (callback)
-            callback();
+          if (leave_callback)
+            leave_callback();
         }
       }
     });

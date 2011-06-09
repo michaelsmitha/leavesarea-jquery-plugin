@@ -7,8 +7,9 @@
  * Date: June 8, 2011
  * Version: 1.0.0
  *
- *  use: $('covered_element').leavesArea(function() {alert('You left!');});
- *
+ *  use: $('covered_element').leavesArea(function(){alert('!');});
+ *  or : $('covered_element').leavesArea(); 
+ *       $('covered_element').bind('leavesArea',function(){alert('!');});
  */
 
 (function($) {

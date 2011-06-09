@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body>
+The inner square is covered by the outer square's z-index. This example uses the "opacity" css property.
+<div id="outer" style="position: absolute; width: 200px; top: 50px; height: 200px; background-color: green; z-index: 1; opacity: .5">
+</div>
+<div id="inner" style="position: absolute; left: 50px; top: 100px; width: 100px; height: 100px; background-color: blue">
+</div>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="jquery.leavesarea.js"></script>
+<script>
+  $('#inner').leavesArea(function() {alert('You left me!');});
+</script>
+</html>
